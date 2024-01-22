@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "syncfusion-component": {
+    "Sync-Kanban": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -11,21 +11,23 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist",
-            "index": "index.html",
-            "main": "src/main.ts",
-            "tsConfig": "tsconfig.json",
-			      "scripts": [
-              "./node_modules/zone.js/dist/zone.min.js"
+            "outputPath": "dist/sync-kanban",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "assets": [
-
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -33,7 +35,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "10mb"
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -44,12 +46,9 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -58,18 +57,39 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "syncfusion-component:build:production"
+              "buildTarget": "Sync-Kanban:build:production"
             },
             "development": {
-              "browserTarget": "syncfusion-component:build:development"
+              "buildTarget": "Sync-Kanban:build:development"
             }
           },
           "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "Sync-Kanban:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
