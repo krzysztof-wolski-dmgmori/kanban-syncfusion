@@ -1,3 +1,5 @@
+[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/krzysztof-wolski-dmgmori/kanban-syncfusion)
+
 # SyncKanban
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
